@@ -1,6 +1,6 @@
 #include <iostream>
 #include <stdio.h>
-#include <conio.h>
+#include <stdlib.h>
 int length = 0;
 //int MAX=1000;
 using namespace std;
@@ -23,12 +23,13 @@ public:
 };
 void employee::input()
 {
-    cout << "enter name: ";
-    gets(name);
+    cout << "enter name: \n";
+    getchar();
+    fgets(name, 100, stdin);
     cout << "enter employee id: ";
     cin >> id;
     cout << "enter designation: ";
-    gets(designation);
+    fgets(designation, 50, stdin);
     cout << "enter age: ";
     cin >> age;
     cout << "enter years of experience: ";
@@ -164,7 +165,7 @@ menu:
         exit(0);
     }
     cout << "press any key to go to main menu...";
-    getch();
+    // getch();
     goto menu;
     return 0;
 }
