@@ -22,15 +22,13 @@ void printMatrix(){
         cout<<"\n";
     }
 }
-void maze(){
-    
-}
+
 int main(){
   
     cout<<"enter dimension: ";
     cin>>n;
     initializeMatrix();
-    maze();
+ 
     printMatrix();
 
     return 0;
