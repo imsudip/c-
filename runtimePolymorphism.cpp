@@ -50,6 +50,7 @@ public:
         cout << rollNo;
         cout << "\nClass : ";
         cout << cls << endl;
+        cout << "\n--------------------\n";
     }
 };
 class Teacher : public Person
@@ -80,6 +81,7 @@ public:
         cout << salary;
         cout << "\nSubject : ";
         cout << subject << endl;
+        cout << "\n--------------------\n";
     }
 };
 int main()
