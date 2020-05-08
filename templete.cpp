@@ -32,7 +32,7 @@ public:
         }
     }
 
-    friend Matrix multiply(Matrix mat1, Matrix mat2)
+    Matrix multiply(Matrix mat1, Matrix mat2)
     {
         int N = mat1.size;
         Matrix res;
@@ -49,7 +49,7 @@ public:
         }
         return res;
     }
-    friend Matrix sum(Matrix mat1, Matrix mat2)
+    Matrix sum(Matrix mat1, Matrix mat2)
     {
         Matrix res;
         int N = mat1.size;
@@ -60,7 +60,7 @@ public:
                 res.arr[i][j] = mat1.arr[i][j] + mat2.arr[i][j];
         return res;
     }
-    friend Matrix difference(Matrix mat1, Matrix mat2)
+    Matrix difference(Matrix mat1, Matrix mat2)
     {
         Matrix res;
         int N = mat1.size;
@@ -72,7 +72,7 @@ public:
         return res;
     }
 
-    friend Matrix transpose(Matrix mat)
+    Matrix transpose(Matrix mat)
     {
         Matrix res;
         int N = mat.size;
@@ -87,7 +87,7 @@ public:
 
 int main()
 {
-    Matrix<int> a, b, c;
+    Matrix<int> a, b, c, d;
     int ch, x = 1;
     cout << "enter the first matrix: \n";
     a.input();
@@ -104,7 +104,7 @@ int main()
             cout << "added with ";
             b.output();
             cout << "result=";
-            c = sum(a, b);
+            c = d.sum(a, b);
             c.output();
             break;
         case 2:
@@ -112,7 +112,7 @@ int main()
             cout << "subtracted from ";
             a.output();
             cout << "result=";
-            c = difference(a, b);
+            c = d.difference(a, b);
             c.output();
             break;
         case 3:
@@ -120,18 +120,18 @@ int main()
             cout << "multiplied with ";
             b.output();
             cout << "result=";
-            c = multiply(a, b);
+            c = d.multiply(a, b);
             c.output();
             break;
         case 4:
 
             a.output();
             cout << "Transpose--";
-            c = transpose(a);
+            c = d.transpose(a);
             c.output();
             b.output();
             cout << "Transpose--";
-            c = transpose(b);
+            c = d.transpose(b);
             c.output();
             break;
         case 5:
