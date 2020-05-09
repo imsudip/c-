@@ -4,6 +4,10 @@
         "string_view": "cpp",
         "initializer_list": "cpp",
         "utility": "cpp",
-        "iostream": "cpp"
+        "iostream": "cpp",
+        "bit": "cpp",
+        "*.tcc": "cpp",
+        "cmath": "cpp",
+        "random": "cpp"
     }
 }
