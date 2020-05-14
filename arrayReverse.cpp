@@ -1,6 +1,7 @@
 #include <iostream>
 using namespace std;
-void reverseArray(int *p, int n)
+int n;
+void reverseArray(int *p)
 {
     int *frst = p;
     int *last = p + n - 1;
@@ -13,19 +14,24 @@ void reverseArray(int *p, int n)
         last--;
     }
 }
-void print(int *p, int n)
+void print(int *p)
 {
     for (int i = 0; i < n; i++)
         cout << *p++ << " ";
 }
 int main()
 {
-    int arr[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14};
-    int n = sizeof(arr) / sizeof(arr[0]);
+    int arr[100];
+    cout << "enter the length of the array: ";
+    cin >> n;
+    for (int i = 0; i < n; i++)
+    {
+        cin >> arr[i];
+    }
     cout << "Normal Array  : ";
-    print(arr, n);
-    reverseArray(arr, n);
+    print(arr);
+    reverseArray(arr);
     cout << "\nReversed Array: ";
-    print(arr, n);
+    print(arr);
     return 0;
 }
