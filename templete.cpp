@@ -32,7 +32,7 @@ public:
         }
     }
 
-    Matrix multiply(Matrix mat1, Matrix mat2)
+    Matrix multiply(Matrix mat1)
     {
         int N = mat1.size;
         Matrix res;
@@ -44,12 +44,12 @@ public:
             {
                 res.arr[i][j] = 0;
                 for (k = 0; k < N; k++)
-                    res.arr[i][j] += mat1.arr[i][k] * mat2.arr[k][j];
+                    res.arr[i][j] += mat1.arr[i][k] * arr[k][j];
             }
         }
         return res;
     }
-    Matrix sum(Matrix mat1, Matrix mat2)
+    Matrix sum(Matrix mat1)
     {
         Matrix res;
         int N = mat1.size;
@@ -57,10 +57,10 @@ public:
         int i, j;
         for (i = 0; i < N; i++)
             for (j = 0; j < N; j++)
-                res.arr[i][j] = mat1.arr[i][j] + mat2.arr[i][j];
+                res.arr[i][j] = mat1.arr[i][j] + arr[i][j];
         return res;
     }
-    Matrix difference(Matrix mat1, Matrix mat2)
+    Matrix difference(Matrix mat1)
     {
         Matrix res;
         int N = mat1.size;
@@ -68,7 +68,7 @@ public:
         int i, j;
         for (i = 0; i < N; i++)
             for (j = 0; j < N; j++)
-                res.arr[i][j] = mat1.arr[i][j] - mat2.arr[i][j];
+                res.arr[i][j] = mat1.arr[i][j] - arr[i][j];
         return res;
     }
 
@@ -87,7 +87,7 @@ public:
 
 int main()
 {
-    Matrix<int> a, b, c, d;
+    Matrix<int> a, b, c;
     int ch, x = 1;
     cout << "enter the first matrix: \n";
     a.input();
@@ -104,7 +104,7 @@ int main()
             cout << "added with ";
             b.output();
             cout << "result=";
-            c = d.sum(a, b);
+            c = b.sum(a);
             c.output();
             break;
         case 2:
@@ -112,7 +112,7 @@ int main()
             cout << "subtracted from ";
             a.output();
             cout << "result=";
-            c = d.difference(a, b);
+            c = b.difference(a);
             c.output();
             break;
         case 3:
@@ -120,18 +120,18 @@ int main()
             cout << "multiplied with ";
             b.output();
             cout << "result=";
-            c = d.multiply(a, b);
+            c = b.multiply(a);
             c.output();
             break;
         case 4:
 
             a.output();
             cout << "Transpose--";
-            c = d.transpose(a);
+            c = a.transpose(a);
             c.output();
             b.output();
             cout << "Transpose--";
-            c = d.transpose(b);
+            c = b.transpose(b);
             c.output();
             break;
         case 5:
