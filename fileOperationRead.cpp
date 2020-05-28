@@ -2,39 +2,44 @@
 #include <fstream>
 using namespace std;
 
-class Student
+struct Student
 {
-public:
+
     char name[20];
     int rollNo, cls, year, totalMarks;
-    void output()
-    {
-        cout << "\nname : ";
-        cout << name;
-        cout << "\nclass :";
-        cout << cls;
-        cout << "\nroll No. :";
-        cout << rollNo;
-        cout << "\nyear: ";
-        cout << year;
-        cout << "\ntotal Marks: ";
-        cout << totalMarks;
-    }
 };
+void output(struct Student s)
+{
+    cout << "\n"
+         << s.rollNo << "\t" << s.name << "\t" << s.totalMarks;
+}
+// void output(struct Student s)
+// {
+//     cout << "\nname : ";
+//     cout << s.name;
+//     cout << "\nclass :";
+//     cout << s.cls;
+//     cout << "\nroll No. :";
+//     cout << s.rollNo;
+//     cout << "\nyear: ";
+//     cout << s.year;
+//     cout << "\ntotal Marks: ";
+//     cout << s.totalMarks;
+// }
+
 int main()
 {
     ifstream fin;
     fin.open("students.txt");
-    Student s;
-    int i = 0;
-    fin.read((char *)&s, sizeof(s));
-    while (!fin.eof())
+    struct Student s;
+
+    cout << "ROLL\tNAME\tMARKS";
+    do
     {
-        cout << "\nDetails of " << i + 1 << " : \n";
-        s.output();
         fin.read((char *)&s, sizeof(s));
-        i++;
-    }
+        output(s);
+    } while (!fin.eof());
+
     fin.close();
     return 0;
 }

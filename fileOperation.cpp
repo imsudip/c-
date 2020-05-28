@@ -2,35 +2,37 @@
 #include <fstream>
 using namespace std;
 int TotalStudents = 10;
-class Student
+struct Student
 {
-public:
+
     char name[20];
     int rollNo, cls, year, totalMarks;
-
-    void input()
-    {
-        cout << "enter the name : ";
-        cin >> name;
-        cout << "enter the class :";
-        cin >> cls;
-        cout << "enter the roll No. :";
-        cin >> rollNo;
-        cout << "enter year: ";
-        cin >> year;
-        cout << "enter total Marks: ";
-        cin >> totalMarks;
-    }
 };
+struct Student input()
+{
+    struct Student s;
+    cout << "enter the name : ";
+    cin >> s.name;
+    cout << "enter the class :";
+    cin >> s.cls;
+    cout << "enter the roll No. :";
+    cin >> s.rollNo;
+    cout << "enter year: ";
+    cin >> s.year;
+    cout << "enter total Marks: ";
+    cin >> s.totalMarks;
+    return s;
+}
+
 int main()
 {
     ofstream fout;
     fout.open("students.txt");
-    Student s;
+    struct Student s;
     for (int i = 0; i < TotalStudents; i++)
     {
         cout << "\nenter the details of " << i + 1 << " : \n";
-        s.input();
+        s = input();
         fout.write((char *)&s, sizeof(s));
     }
     fout.close();
