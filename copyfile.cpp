@@ -11,7 +11,6 @@ int main()
     fin >> c;
     while (!fin.eof())
     {
-
         if (c != ' ')
             fout << c;
         fin >> c;
