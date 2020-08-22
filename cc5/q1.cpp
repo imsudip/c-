@@ -1,137 +1,175 @@
 #include <iostream>
 using namespace std;
 
-// Making a node struct containing a data int and a pointer
-// to another node
-struct Node { 
-  int data; 
-  Node *next; 
+
+template <class T> class Node
+{
+public:
+    T data;
+    Node *next;
 };
 
-class LinkedList
+template <class T> class LinkedList
 {
-    // Head pointer
-    Node* head;
+    Node<T> *head;
 
-  public:
-    // default constructor. Initializing head pointer
+public:
     LinkedList()
     {
-      head = NULL;
+        head = NULL;
     }
 
-    // inserting elements (At start of the list)
-    void insert(int val)
+    void insert(T val)
     {
-      // make a new node
-      Node* new_node = new Node;
-      new_node->data = val;
-      new_node->next = NULL;
-
-      // If list is empty, make the new node, the head
-      if (head == NULL)
-        head = new_node;
-      // else, make the new_node the head and its next, the previous
-      // head
-      else
-      {
-        new_node->next = head;
-        head = new_node;
-      }
+        //--
+        Node<T> *newNode = new Node<T>;
+        newNode->data = val;
+        newNode->next = NULL;
+        //--
+        if (head == NULL)
+        {
+            head = newNode;
+        }
+        else
+        {
+            newNode->next = head;
+            head = newNode;
+        }
     }
 
-    // loop over the list. return true if element found
-    bool search(int val)
+    bool search(T val)
     {
-      Node* temp = head;
-      while(temp != NULL)
-      {
-        if (temp->data == val)
-          return true;
-        temp = temp->next;
-      }
-      return false;
+        Node<T> *temp = head;
+        while (temp != NULL)
+        {
+            if (temp->data == val)
+            {
+                return true;
+            }
+            temp = temp->next;
+        }
+        return false;
     }
 
-    
-    void remove(int val)
+    void remove(T val)
     {
-      // If the head is to be deleted
-      if (head->data == val)
-      {
-        delete head;
-        head = head->next;
-        return;
-      }
 
-      // If there is only one element in the list
-      if (head->next == NULL)
-      {
-        // If the head is to be deleted. Assign null to the head
         if (head->data == val)
         {
-          delete head;
-          head = NULL;
-          return;
+            if (head->next == NULL)
+            {
+                delete head;
+                cout << "removed";
+                head = NULL;
+                return;
+            }
+            else
+            {
+                Node<T> *tPtr = head->next;
+                delete head;
+                cout << "removed";
+                head = tPtr;
+                return;
+            }
         }
-        // else print, value not found
-        cout << "Value not found!" << endl;
-        return;
-      }
-
-      // Else loop over the list and search for the node to delete
-      Node* temp = head;
-      while(temp->next!= NULL)
-      {
-        // When node is found, delete the node and modify the pointers
-        if (temp->next->data == val)
+        Node<T> *temp = head;
+        while (temp->next != NULL)
         {
-          Node* temp_ptr = temp->next->next;
-          delete temp->next;
-          temp->next = temp_ptr;
-          return;
+            if (temp->next->data == val)
+            {
+                Node<T> *tPtr = temp->next->next;
+                delete temp->next;
+                cout << "removed";
+                temp->next = tPtr;
+                return;
+            }
+            temp = temp->next;
         }
-        temp = temp->next;
-      }
-
-      // Else, the value was neve in the list
-      cout << "Value not found" << endl;
+        cout << "failed to find the given element";
     }
-
     void display()
     {
-      Node* temp = head;
-      while(temp != NULL)
-      {
-        cout << temp->data << " ";
-        temp = temp->next;
-      }
-      cout << endl;
+        Node<T> *temp = head;
+        while (temp != NULL)
+        {
+            cout << temp->data << " -> ";
+            temp = temp->next;
+        }
+        cout << endl;
+    }
+    void reverse()
+    {
+        Node<T> *cur = head;
+        Node<T> *prev = NULL;
+        Node<T> *next = NULL;
+        while (cur != NULL)
+        {
+            next = cur->next;
+            cur->next = prev;
+            prev = cur;
+            cur = next;
+        }
+        head = prev;
+    }
+    friend void concat(LinkedList l1, LinkedList l2)
+    {
+        Node<T> *temp = l1.head;
+        while (temp->next != NULL)
+            temp = temp->next;
+        temp->next = l2.head;
     }
 };
-
-int main() {
-  
-  LinkedList l;
-  // inserting elements
-  l.insert(6);
-  l.insert(9);
-  l.insert(1);
-  l.insert(3);
-  l.insert(7);
-  cout << "Current Linked List: ";
-  l.display();
-
-  cout << "Deleting 1: ";
-  l.remove(1);
-  l.display();
-
-  cout << "Deleting 13: ";
-  l.remove(13);
-
-  cout << "Searching for 7: ";
-  cout << l.search(7) << endl;
-
-  cout << "Searching for 13: ";
-  cout << l.search(13) << endl;
+int main()
+{
+    LinkedList<int> l;
+    int x = 0, ch;
+    int in;
+    while (x == 0)
+    {
+        cout << "\n1.Insert  2.search  3.remove  4.display  5.reverse  6.concat  7.exit\n";
+        cin >> ch;
+        switch (ch)
+        {
+        case 1:
+            cin >> in;
+            l.insert(in);
+            break;
+        case 2:
+            cin >> in;
+            if (l.search(in))
+                cout << "element found";
+            else
+                cout << "failed to find element";
+            break;
+        case 3:
+            cin >> in;
+            l.remove(in);
+            break;
+        case 4:
+            l.display();
+            break;
+        case 5:
+            l.reverse();
+            l.display();
+            break;
+        case 6:
+        {
+            LinkedList<int> l2;
+            l2.insert(1);
+            l2.insert(2);
+            l2.insert(3);
+            l2.insert(4);
+            l2.insert(5);
+            cout << "here is the second linked list: \n";
+            l2.display();
+            concat(l, l2);
+            cout << "after concatenation:\n";
+            l.display();
+            break;
+        }
+        default:
+            break;
+        }
+    }
+    return 0;
 }
