@@ -7,7 +7,7 @@ void main(){
 	for(i=0;i<n;i++){
 		for(j=i;j<=2*i;j++)
 			{
-				if(i==0)
+				if(i!=0)
 				{
 					printf("1");
 				}
@@ -17,6 +17,7 @@ void main(){
 				}	
 			}
 			printf("\n");
+			
 			
 	}
 }

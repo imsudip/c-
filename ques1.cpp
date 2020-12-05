@@ -10,15 +10,13 @@ bool isprime(int num){
     return true;
 }
 int main(){
-    int num=0,primeCount=0,comCount=0;
-    while(num!=-1){
-        cin>>num;
-        if(isprime(num))
-           { cout<<num;
-               primeCount++;}
-        else
-            comCount++;
-        
-    }
+    int start,end;
+    cout<<"start range from: ";
+    cin>>start;
+    cout<<"end range upto: ";
+    cin>>end;
+    for(int i=start;i<=end;i++)
+    if(isprime(i))
+        cout<<i<<",";
     return 0;
 }
