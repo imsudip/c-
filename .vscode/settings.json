@@ -43,5 +43,6 @@
         "new": "cpp",
         "stdexcept": "cpp",
         "typeinfo": "cpp"
-    }
+    },
+    "C_Cpp.errorSquiggles": "Disabled"
 }
