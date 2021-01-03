@@ -1,7 +1,7 @@
 #include <iostream>
 #include <fstream>
 using namespace std;
-int TotalStudents = 10;
+int TotalStudents = 3;
 struct Student
 {
 
