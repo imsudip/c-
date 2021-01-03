@@ -24,6 +24,7 @@ int main()
     int arr[100];
     cout << "enter the length of the array: ";
     cin >> n;
+    cout<<"enter the elements of the array: ";
     for (int i = 0; i < n; i++)
     {
         cin >> arr[i];
